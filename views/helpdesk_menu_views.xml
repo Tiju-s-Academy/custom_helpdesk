@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_helpdesk_root" name="Help Desk" web_icon="custom_helpdesk,static/description/icon.png"/>
+    <menuitem id="menu_helpdesk_ticket" name="Tickets" parent="menu_helpdesk_root" action="action_helpdesk_ticket"/>
+    <menuitem id="menu_helpdesk_team" name="Teams" parent="menu_helpdesk_root" action="action_helpdesk_team"/>
+    <menuitem id="menu_helpdesk_category" name="Category" parent="menu_helpdesk_root" action="action_helpdesk_category"/>
+</odoo>

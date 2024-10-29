@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Tree View for Help Desk Teams -->
+    <record id="view_helpdesk_team_tree" model="ir.ui.view">
+        <field name="name">helpdesk.team.tree</field>
+        <field name="model">helpdesk.team</field>
+        <field name="arch" type="xml">
+            <tree string="Help Desk Teams">
+                <field name="name"/>
+                <field name="ticket_count" string="Tickets"/>
+                <field name="member_ids" widget="many2many_tags" string="Team Members"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Help Desk Teams -->
+    <record id="view_helpdesk_team_form" model="ir.ui.view">
+        <field name="name">helpdesk.team.form</field>
+        <field name="model">helpdesk.team</field>
+        <field name="arch" type="xml">
+            <form string="Help Desk Team">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="ticket_count" readonly="1" string="Number of Tickets"/>
+                        <field name="member_ids" widget="many2many_tags" string="Team Members"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Help Desk Team View -->
+    <record id="action_helpdesk_team" model="ir.actions.act_window">
+        <field name="name">Help Desk Teams</field>
+        <field name="res_model">helpdesk.team</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_helpdesk_team_tree"/>
+    </record>
+</odoo>

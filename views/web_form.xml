@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="helpdesk_thanks_web_form_template">
+        <title>Help desk Request Form</title>
+        <t t-call="website.layout">
+            <div id="wrap">
+                <br></br>
+                <div class="container head" align="center">
+                    <h2>
+                        <b>Thank You</b>
+                    </h2>
+                </div>
+                <br/>
+                <div class="container link-head" align="center">
+                    <a t-attf-href="create_helpdesk_request">Thanks for your submission </a>
+                </div>
+                <br/>
+            </div>
+        </t>
+    </template>
+    <template id="web_form_template">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <br></br>
+                <div class="container head" align="center">
+                    <h5>
+                        <b>Register Here</b>
+                    </h5>
+                </div>
+                <br></br>
+                <div class="container form-class">
+                    <form action="/helpdesk_request/submit" class="form_validate"
+                          enctype="multipart/form-data"
+                          method="POST">
+                        <input type="hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()"/>
+                        <div class="row">
+                            <div class="col-6">
+                                <label>
+                                    <b>Name</b>
+                                </label>
+                                <input type="text" id="student"
+                                       class="form-control"
+                                       placeholder="Request reason"
+                                       name="website_student" required="1"/>
+                            </div>
+                            <div class="col-6">
+                                <label>
+                                    <b>Phone Number</b>
+                                </label>
+                                <input type="text" id="phone_number"
+                                       class="form-control"
+                                       placeholder="Please Enter Your Phone Number"
+                                       name="phone_number" required="1"/>
+                            </div>
+                        </div>
+                        <br></br>
+                        <div class="row">
+                            <div class="col-6">
+                                <label>
+                                    <b>Category</b>
+                                </label>
+                                <select name="category_id" class="form-control">
+                                    <option value="" selected="true">Select Your
+                                        Category
+                                    </option>
+                                    <t t-foreach="category" t-as="cat">
+                                        <option t-att-value="cat.id">
+                                            <t t-esc="cat.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label>
+                                    <b>Helpdesk Reason</b>
+                                </label>
+                                <input type="text" id="name"
+                                       class="form-control"
+                                       placeholder="Please Enter Your Reason"
+                                       name="name" required="1"/>
+                            </div>
+                        </div>
+                        <br></br>
+                        <div class="row">
+                            <div class="col-6">
+                                <label>
+                                    <b>Priority</b>
+                                </label>
+                                <select name="priority" class="form-control">
+                                    <option value="" selected="true">Select Priority</option>
+                                    <t t-foreach="priority_options" t-as="priority">
+                                        <option t-att-value="priority[0]">
+                                            <t t-esc="priority[1]"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label>
+                                    <b>Attachment</b>
+                                </label>
+                                <input type="file" class="form-control phone"
+                                       name="file" id="file"
+                                       placeholder="Upload attachemnt"
+                                       required="1"/>
+                            </div>
+                        </div>
+                        <br></br>
+
+                        <div class="form-group col-12 btn-center new_div"
+                             align="center">
+                            <div style="width: 200px;"
+                                 class="s_website_form_label"/>
+                            <button type="submit" class="btn btn-primary submit_btn"
+                                    id="submitbtn">Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

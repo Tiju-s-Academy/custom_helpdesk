@@ -1,0 +1,62 @@
+<odoo>
+    <record id="view_helpdesk_category_kanban" model="ir.ui.view">
+        <field name="name">helpdesk.category.kanban</field>
+        <field name="model">helpdesk.category</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard">
+                <field name="name"/>
+                <field name="ticket_count"/>
+                <field name="solved_ticket_count"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <span/>
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <field name="name"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container o_kanban_card_content">
+                                <div class="row">
+                                    <div class="col o_kanban_primary_left">
+                                        <button class="btn btn-primary o_helpdesk_ticket_btn"
+                                                name="action_ticket" type="object">
+                                            Tickets
+                                        </button>
+                                    </div>
+                                    <div class="col o_kanban_primary_right">
+                                    </div>
+                                </div>
+                                <div class="row pt-5">
+                                    <div class="col">
+                                        <a class="d-flex flex-column align-items-center">
+                                            <span class="fw-bold">
+                                                <field name="ticket_count"/>
+                                            </span>
+                                            <span class="text-muted">Total Tickets</span>
+                                        </a>
+                                    </div>
+                                    <div class="col text-center border-start">
+                                        <a class="d-flex flex-column align-items-center">
+                                            <span class="fw-bold">
+                                                <field name="solved_ticket_count"/>
+                                            </span>
+                                            <span class="text-muted">Solved Tickets</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+<record id="action_helpdesk_dashboard" model="ir.actions.act_window">
+<field name="name">Helpdesk Dashboard</field>
+<field name="res_model">helpdesk.category</field>
+<field name="view_mode">kanban</field>
+</record>
+        </odoo>

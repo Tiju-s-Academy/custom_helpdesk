@@ -28,6 +28,8 @@ class WebFormController(Controller):
             'category_id': post.get('category_id'),
             'name': post.get('name'),
             'priority': post.get('priority'),
+            'state': 'submitted',
+
         })
         return request.redirect('/helpdesk_thanks')
 

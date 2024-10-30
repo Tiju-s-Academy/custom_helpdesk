@@ -5,8 +5,8 @@
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="priority" widget="priority"/>
+                <field name="name" readonly="state not in 'new'"/>
+                <field name="priority" widget="priority" readonly="state not in 'new'"/>
                 <field name="customer_id"/>
                 <field name="state"/>
                 <field name="create_date"/>
@@ -17,15 +17,14 @@
         <field name="name">helpdesk.ticket.kanban</field>
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="state" on_create="quick_create" class="o_kanban_small_column"
+            <kanban default_group_by="state"  class="o_kanban_small_column"
                     sample="1" js_class="helpdesk_ticket_kanban">
                 <field name="name"/>
                 <field name="customer_id"/>
                 <field name="category_id"/>
                 <field name="expected_resolution_date"/>
                 <field name="priority" widget="priority"/>
-                <progressbar field="state" colors="{&quot;done&quot;: &quot;success&quot;, &quot;blocked&quot;:
-                                &quot;danger&quot;, &quot;normal&quot;: &quot;200&quot;}"/>
+                <progressbar field="state" colors="{&quot;done&quot;: &quot;success&quot;, &quot;canceled&quot;: &quot;danger&quot;, &quot;in_progress&quot;: &quot;normal&quot; }"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
@@ -66,23 +65,31 @@
                             invisible="state !='submitted'"/>
 
                     <button string="Start Progress" name="action_start_progress" type="object"
+                            groups="custom_helpdesk.group_helpdesk_admin,custom_helpdesk.group_helpdesk_team_member"
                             invisible="state !='submitted'"/>
 
                     <button string="Resolve" name="action_resolve" type="object"
+                            groups="custom_helpdesk.group_helpdesk_admin,custom_helpdesk.group_helpdesk_team_member"
                             invisible="state !='in_progress'"/>
                 </header>
                 <sheet>
                     <group>
-                        <field name="name" readonly="state not in ['new','submitted']"/>
-                        <field name="customer_id" readonly="state not in ['new','submitted']"/>
-                        <field name="priority" widget="priority" readonly="state not in ['new','submitted']"/>
-                        <field name="category_id" readonly="state not in ['new','submitted']"/>
+                        <field name="name" readonly="state not in 'new'"/>
+                        <field name="customer_id" readonly="state not in 'new'"/>
+                        <field name="priority" widget="priority" readonly="state not in 'new'"/>
+                        <field name="category_id" readonly="state not in 'new'"/>
                         <field name="create_date" readonly="1"/>
-                        <field name="expected_resolution_date" readonly="state not in ['new','submitted']"/>
+                        <field name="file" readonly="state not in 'new'"/>
+                        <field name="expected_resolution_date"
+                               groups="custom_helpdesk.group_helpdesk_admin,custom_helpdesk.group_helpdesk_team_member"
+                               readonly="state not in 'new'"/>
+                        <field name="expected_resolution_date"
+                               groups="custom_helpdesk.group_helpdesk_user"
+                               readonly="1"/>
                     </group>
                     <notebook>
                         <page string="Description">
-                            <field name="description"/>
+                            <field name="description" readonly="state not in 'new'"/>
                         </page>
                     </notebook>
                 </sheet>

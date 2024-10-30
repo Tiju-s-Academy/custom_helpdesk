@@ -29,6 +29,6 @@
     <record id="action_helpdesk_category" model="ir.actions.act_window">
         <field name="name">HelpDesk category</field>
         <field name="res_model">helpdesk.category</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 </odoo>

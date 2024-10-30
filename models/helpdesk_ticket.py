@@ -8,16 +8,21 @@ class HelpDeskTicket(models.Model):
     name = fields.Char(string="Ticket Title", required=True)
     description = fields.Text(string="Description")
     state = fields.Selection(selection=[('new', 'New'), ('submitted','Submitted'), ('in_progress', 'In Progress'), ('done', 'Done'),
-                                         ('canceled', 'Canceled')], tracking=True, String="Status",default='new')
-    priority = fields.Selection(selection=[('low', 'Low'), ('medium', 'Medium'), ('high', 'High')],
-                                string="Priority", default='medium')
+                                         ('canceled', 'Canceled')], tracking=True, String="Status",default='new',index=True)
+    priority = fields.Selection(selection=[
+        ('0', 'Low'),
+        ('1', 'Medium'),
+        ('2', 'High'),
+        ('3', 'Urgent')],
+    string="Priority",
+    default='1')
     category_id = fields.Many2one('helpdesk.category', string="Category")
     customer_id = fields.Many2one('res.partner', string="Customer", default=lambda self: self.env.user.partner_id,
-                                  required=True)
-    create_date = fields.Datetime(string="Creation Date", readonly=True, default=fields.Datetime.now)
-    expected_resolution_date = fields.Datetime(string="Resolve within")
+                                  required=True,readonly=True)
+    create_date = fields.Date(string="Submission Date", readonly=True, default=fields.Date.today)
+    expected_resolution_date = fields.Datetime(string="solve within")
     phone_number = fields.Text(string="Phone Number")
-    file = fields.Binary(string="Attachment")
+    file = fields.Binary(string="Attachment", store=True)
     website_student = fields.Char(string='Name')
 
     def action_submit(self):

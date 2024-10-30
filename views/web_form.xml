@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <template id="helpdesk_thanks_web_form_template">
-        <title>Help desk Request Form</title>
+        <title>HelpDesk - Thank You</title>
         <t t-call="website.layout">
             <div id="wrap">
                 <br></br>
@@ -19,6 +19,7 @@
         </t>
     </template>
     <template id="web_form_template">
+        <title>HelpDesk</title>
         <t t-call="website.layout">
             <div id="wrap">
                 <br></br>
@@ -41,7 +42,7 @@
                                 </label>
                                 <input type="text" id="student"
                                        class="form-control"
-                                       placeholder="Request reason"
+                                       placeholder="Enter Your Name"
                                        name="website_student" required="1"/>
                             </div>
                             <div class="col-6">

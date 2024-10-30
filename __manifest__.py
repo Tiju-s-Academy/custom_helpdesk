@@ -1,10 +1,10 @@
 {
-    'name': 'Help Desk',
+    'name': 'HelpDesk',
     'version': '17.0.1.0.0',
     'summary': 'Help Desk Management System',
     'depends': ['base', 'mail', 'web'],
     'data': [
-        # 'data/mail_activity_data.xml',
+        'data/mail_activity_data.xml',
         'security/helpdesk_security.xml',
         'security/ir.model.access.csv',
         'security/ir.rule.xml',

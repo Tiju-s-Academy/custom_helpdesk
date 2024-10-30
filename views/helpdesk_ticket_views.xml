@@ -17,14 +17,15 @@
         <field name="name">helpdesk.ticket.kanban</field>
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="state"  class="o_kanban_small_column"
+            <kanban default_group_by="state" class="o_kanban_small_column"
                     sample="1" js_class="helpdesk_ticket_kanban">
                 <field name="name"/>
                 <field name="customer_id"/>
                 <field name="category_id"/>
                 <field name="expected_resolution_date"/>
                 <field name="priority" widget="priority"/>
-                <progressbar field="state" colors="{&quot;done&quot;: &quot;success&quot;, &quot;canceled&quot;: &quot;danger&quot;, &quot;in_progress&quot;: &quot;normal&quot; }"/>
+                <progressbar field="state"
+                             colors="{&quot;done&quot;: &quot;success&quot;, &quot;canceled&quot;: &quot;danger&quot;, &quot;in_progress&quot;: &quot;normal&quot; }"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
@@ -60,24 +61,23 @@
                 <header>
                     <field name="state" widget="statusbar"/>
                     <button string="Submit" name="action_submit" type="object" class="oe_highlight"
-                            invisible="state !='new'"/>
+                            invisible="state != 'new'"/>
                     <button string="Cancel" name="action_cancel_submission" type="object"
-                            invisible="state !='submitted'"/>
-
+                            invisible="state != 'submitted'"/>
                     <button string="Start Progress" name="action_start_progress" type="object"
                             groups="custom_helpdesk.group_helpdesk_admin,custom_helpdesk.group_helpdesk_team_member"
-                            invisible="state !='submitted'"/>
-
+                            invisible="state != 'submitted'"/>
                     <button string="Resolve" name="action_resolve" type="object"
                             groups="custom_helpdesk.group_helpdesk_admin,custom_helpdesk.group_helpdesk_team_member"
-                            invisible="state !='in_progress'"/>
+                            invisible="state != 'in_progress'"/>
                 </header>
                 <sheet>
                     <group>
                         <field name="name" readonly="state not in 'new'"/>
                         <field name="customer_id" readonly="state not in 'new'"/>
                         <field name="priority" widget="priority" readonly="state not in 'new'"/>
-                        <field name="category_id" readonly="state not in 'new'"/>
+                        <field name="category_id" options="{'no_create': True}"
+                               readonly="state not in 'new'"/> <!-- Allow all categories -->
                         <field name="create_date" readonly="1"/>
                         <field name="file" readonly="state not in 'new'"/>
                         <field name="expected_resolution_date"

@@ -5,14 +5,17 @@
         <field name="sequence">21</field>
         <field name="visible" eval="0"/>
     </record>
-     <record id="group_helpdesk_admin" model="res.groups">
+
+    <record id="group_helpdesk_admin" model="res.groups">
         <field name="name">Helpdesk Admin</field>
-         <field name="category_id" ref="helpdesk_groups"/>
+        <field name="category_id" ref="helpdesk_groups"/>
     </record>
+
     <record id="group_helpdesk_user" model="res.groups">
         <field name="name">Helpdesk User</field>
         <field name="category_id" ref="helpdesk_groups"/>
     </record>
+
     <record id="group_helpdesk_team_member" model="res.groups">
         <field name="name">Helpdesk Team Member</field>
         <field name="category_id" ref="helpdesk_groups"/>

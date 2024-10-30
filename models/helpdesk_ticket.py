@@ -29,13 +29,13 @@ class HelpDeskTicket(models.Model):
 
     def action_submit(self):
         self.state = 'submitted'
-        # if self.category_id.team_id.member_ids:
-        #     for user in self.category_id.team_id.member_ids:
-        #         self.activity_schedule(
-        #             'your_module_name.mail_activity_type_helpdesk_ticket',  # Custom activity type
-        #             user_id=user.id,
-        #             note=f'Please Check Ticket: {self.name}'
-        #         )
+        if self.category_id.team_id.member_ids:
+            for user in self.category_id.team_id.member_ids:
+                self.activity_schedule(
+                    'custom_helpdesk.mail_activity_type_helpdesk_ticket',  # Custom activity type
+                    user_id=user.id,
+                    note=f'Please Check Ticket: {self.name}'
+                )
 
     def action_start_progress(self):
         for record in self:
@@ -44,6 +44,9 @@ class HelpDeskTicket(models.Model):
     def action_resolve(self):
         for record in self:
             record.state = 'done'
+            activity_ids = self.activity_ids
+            if activity_ids:
+                activity_ids.unlink()
             return {
                 'effect': {
                     'fadeout': 'slow',

@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <!-- Admin Rule: Can see all tickets -->
     <record id="rule_helpdesk_ticket_admin" model="ir.rule">
         <field name="name">Helpdesk Ticket Admin Rule</field>
         <field name="model_id" ref="model_helpdesk_ticket"/>
         <field name="groups" eval="[(4, ref('custom_helpdesk.group_helpdesk_admin'))]"/>
-        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="domain_force">[(1, '=', 1)]</field> <!-- Admins see all tickets -->
     </record>
 
-    <!-- User Rule: See only their own tickets -->
+    <!-- User Rule: Can see only their own tickets -->
     <record id="rule_helpdesk_ticket_user" model="ir.rule">
         <field name="name">Helpdesk Ticket User Rule</field>
         <field name="model_id" ref="model_helpdesk_ticket"/>
         <field name="groups" eval="[(4, ref('custom_helpdesk.group_helpdesk_user'))]"/>
-        <field name="domain_force">[('customer_id', '=', user.partner_id.id)]</field>
+        <field name="domain_force">[('customer_id', '=', user.partner_id.id)]</field> <!-- Users see their own tickets -->
     </record>
 
-    <!-- Team Member Rule: See tickets assigned to their team -->
+    <!-- Team Member Rule: Can see all categories but only their own tickets -->
     <record id="rule_helpdesk_ticket_team_member" model="ir.rule">
         <field name="name">Helpdesk Ticket Team Member Rule</field>
         <field name="model_id" ref="model_helpdesk_ticket"/>
         <field name="groups" eval="[(4, ref('custom_helpdesk.group_helpdesk_team_member'))]"/>
-        <field name="domain_force">[('category_id.team_id.member_ids', 'in', [user.id])]</field>
+        <field name="domain_force">['|', ('customer_id', '=', user.partner_id.id), ('category_id.team_id.member_ids', 'in', [user.id])] </field> <!-- Team members see their tickets and can resolve -->
     </record>
+
+    <!-- Admin Rule for Categories: Can see all categories -->
     <record id="rule_helpdesk_category_admin" model="ir.rule">
         <field name="name">Helpdesk Category Admin Rule</field>
         <field name="model_id" ref="model_helpdesk_category"/>
         <field name="groups" eval="[(4, ref('custom_helpdesk.group_helpdesk_admin'))]"/>
-        <field name="domain_force">[(1, '=', 1)]</field>  <!-- Admins see all categories -->
+        <field name="domain_force">[(1, '=', 1)]</field> <!-- Admins see all categories -->
     </record>
 
-    <!-- Team Member Rule for Helpdesk Categories: See categories assigned to their team -->
+    <!-- Team Member Rule for Helpdesk Categories: Can see all categories -->
     <record id="rule_helpdesk_category_team_member" model="ir.rule">
         <field name="name">Helpdesk Category Team Member Rule</field>
         <field name="model_id" ref="model_helpdesk_category"/>
         <field name="groups" eval="[(4, ref('custom_helpdesk.group_helpdesk_team_member'))]"/>
-        <field name="domain_force">[('team_id.member_ids', 'in', [user.id])]
-        </field>  <!-- Team members see their categories -->
+        <field name="domain_force">[(1, '=', 1)]</field> <!-- Team members see all categories -->
     </record>
+
+    <!-- Public Access to Helpdesk Categories -->
     <record id="rule_helpdesk_category_public" model="ir.rule">
         <field name="name">Public Helpdesk Category Access</field>
         <field name="model_id" ref="model_helpdesk_category"/>
         <field name="groups" eval="[(4, ref('base.group_public'))]"/>
-        <field name="domain_force">[(1, '=', 1)]</field> <!-- Allows access to all records -->
+        <field name="domain_force">[(1, '=', 1)]</field> <!-- Public can see all categories -->
     </record>
 </odoo>

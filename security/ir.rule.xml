@@ -22,7 +22,7 @@
         <field name="groups" eval="[(4, ref('custom_helpdesk.group_helpdesk_team_member'))]"/>
         <field name="domain_force">[('category_id.team_id.member_ids', 'in', [user.id])]</field>
     </record>
-     <record id="rule_helpdesk_category_admin" model="ir.rule">
+    <record id="rule_helpdesk_category_admin" model="ir.rule">
         <field name="name">Helpdesk Category Admin Rule</field>
         <field name="model_id" ref="model_helpdesk_category"/>
         <field name="groups" eval="[(4, ref('custom_helpdesk.group_helpdesk_admin'))]"/>
@@ -34,6 +34,13 @@
         <field name="name">Helpdesk Category Team Member Rule</field>
         <field name="model_id" ref="model_helpdesk_category"/>
         <field name="groups" eval="[(4, ref('custom_helpdesk.group_helpdesk_team_member'))]"/>
-        <field name="domain_force">[('team_id.member_ids', 'in', [user.id])]</field>  <!-- Team members see their categories -->
+        <field name="domain_force">[('team_id.member_ids', 'in', [user.id])]
+        </field>  <!-- Team members see their categories -->
+    </record>
+    <record id="rule_helpdesk_category_public" model="ir.rule">
+        <field name="name">Public Helpdesk Category Access</field>
+        <field name="model_id" ref="model_helpdesk_category"/>
+        <field name="groups" eval="[(4, ref('base.group_public'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field> <!-- Allows access to all records -->
     </record>
 </odoo>

@@ -7,6 +7,9 @@
                 <field name="name"/>
                 <field name="ticket_count"/>
                 <field name="solved_ticket_count"/>
+                <field name="total_ticket_count"/>
+                <field name="total_solved_ticket_count"/>
+                <field name="team_id"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div>
@@ -27,6 +30,9 @@
                                         </button>
                                     </div>
                                     <div class="col o_kanban_primary_right">
+                                        <span class="text-muted">
+                                            <field name="team_id" options="{'widget': 'many2one'}"/>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="row pt-5">
@@ -49,14 +55,14 @@
                                 </div>
                             </div>
                         </div>
-                </t>
-            </templates>
-        </kanban>
-    </field>
-</record>
-<record id="action_helpdesk_dashboard" model="ir.actions.act_window">
-<field name="name">Helpdesk Dashboard</field>
-<field name="res_model">helpdesk.category</field>
-<field name="view_mode">kanban</field>
-</record>
-        </odoo>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="action_helpdesk_dashboard" model="ir.actions.act_window">
+        <field name="name">Helpdesk Dashboard</field>
+        <field name="res_model">helpdesk.category</field>
+        <field name="view_mode">kanban</field>
+    </record>
+</odoo>

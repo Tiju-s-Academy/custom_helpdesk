@@ -4,6 +4,7 @@
     'summary': 'Help Desk Management System',
     'depends': ['base', 'mail', 'web'],
     'data': [
+        # 'data/mail_activity_data.xml',
         'security/helpdesk_security.xml',
         'security/ir.model.access.csv',
         'security/ir.rule.xml',

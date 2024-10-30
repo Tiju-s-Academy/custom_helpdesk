@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!-- Custom Activity Type for Helpdesk Tickets -->
+        <record id="mail_activity_type_helpdesk_ticket" model="mail.activity.type">
+            <field name="name">Helpdesk Ticket Follow-up</field>
+            <field name="category">upload_file</field> <!-- Choose the appropriate category, e.g., 'todo', 'meeting' -->
+            <field name="icon">fa-check-square</field> <!-- Choose an appropriate icon -->
+            <field name="summary">Ticket Follow-up</field>
+            <field name="res_model_id" ref="helpdesk.model_helpdesk_ticket"/> <!-- Reference your model -->
+        </record>
+    </data>
+</odoo>

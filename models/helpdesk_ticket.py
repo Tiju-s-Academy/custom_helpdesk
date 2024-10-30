@@ -4,6 +4,8 @@ from odoo import models,fields,api
 class HelpDeskTicket(models.Model):
     _name = 'helpdesk.ticket'
     _description = 'Help Desk Ticket'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
 
     name = fields.Char(string="Ticket Title", required=True)
     description = fields.Text(string="Description")
@@ -27,6 +29,13 @@ class HelpDeskTicket(models.Model):
 
     def action_submit(self):
         self.state = 'submitted'
+        # if self.category_id.team_id.member_ids:
+        #     for user in self.category_id.team_id.member_ids:
+        #         self.activity_schedule(
+        #             'your_module_name.mail_activity_type_helpdesk_ticket',  # Custom activity type
+        #             user_id=user.id,
+        #             note=f'Please Check Ticket: {self.name}'
+        #         )
 
     def action_start_progress(self):
         for record in self:

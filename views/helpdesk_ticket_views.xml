@@ -19,6 +19,7 @@
         <field name="arch" type="xml">
             <kanban default_group_by="state" class="o_kanban_small_column"
                     sample="1" js_class="helpdesk_ticket_kanban">
+                <field name="state"/>
                 <field name="name"/>
                 <field name="customer_id"/>
                 <field name="category_id"/>
@@ -52,6 +53,7 @@
                 </templates>
             </kanban>
         </field>
+
     </record>
     <record id="view_helpdesk_ticket_form" model="ir.ui.view">
         <field name="name">helpdesk.ticket.form</field>

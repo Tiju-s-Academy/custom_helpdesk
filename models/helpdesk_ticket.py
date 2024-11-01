@@ -1,4 +1,4 @@
-from odoo import models,fields,api
+from odoo import models,fields, api
 
 
 class HelpDeskTicket(models.Model):
@@ -6,11 +6,12 @@ class HelpDeskTicket(models.Model):
     _description = 'Help Desk Ticket'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-
     name = fields.Char(string="Ticket Title", required=True)
     description = fields.Text(string="Description")
-    state = fields.Selection(selection=[('new', 'New'), ('submitted','Submitted'), ('in_progress', 'In Progress'), ('done', 'Done'),
-                                         ('canceled', 'Canceled')], tracking=True, String="Status",default='new',index=True)
+    state = fields.Selection(selection=[('new', 'New'), ('submitted', 'Submitted'), ('in_progress', 'In Progress'),
+                                        ('done', 'Done'),
+                                         ('canceled', 'Canceled')], tracking=True, String="Status", default='new',
+                             index=True)
     priority = fields.Selection(selection=[
         ('0', 'Low'),
         ('1', 'Medium'),

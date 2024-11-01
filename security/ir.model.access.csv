@@ -2,10 +2,13 @@ id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 access_helpdesk_ticket_admin,access.helpdesk.ticket.admin,model_helpdesk_ticket,custom_helpdesk.group_helpdesk_admin,1,1,1,1
 access_helpdesk_ticket_user,access.helpdesk.ticket.user,model_helpdesk_ticket,custom_helpdesk.group_helpdesk_user,1,1,1,0
 access_helpdesk_ticket_team_member,access.helpdesk.ticket.team_member,model_helpdesk_ticket,custom_helpdesk.group_helpdesk_team_member,1,1,1,0
+
 access_helpdesk_team_admin,access.helpdesk.team.admin,model_helpdesk_team,custom_helpdesk.group_helpdesk_admin,1,1,1,1
 access_helpdesk_team_user,access.helpdesk.team.user,model_helpdesk_team,custom_helpdesk.group_helpdesk_user,1,0,0,0
 access_helpdesk_team_member,access.helpdesk.team.member,model_helpdesk_team,custom_helpdesk.group_helpdesk_team_member,1,0,0,0
+
 access_helpdesk_category_admin,access.helpdesk.category.admin,model_helpdesk_category,custom_helpdesk.group_helpdesk_admin,1,1,1,1
 access_helpdesk_category_team_member,access.helpdesk.category.team_member,model_helpdesk_category,custom_helpdesk.group_helpdesk_team_member,1,0,0,0
 access_helpdesk_category_user,access.helpdesk.category.user,model_helpdesk_category,custom_helpdesk.group_helpdesk_user,1,0,0,0
+
 access_helpdesk_category_public,access.helpdesk.category.public,model_helpdesk_category,base.group_public,1,0,0,0

@@ -111,6 +111,6 @@
     <record id="action_helpdesk_ticket" model="ir.actions.act_window">
         <field name="name">HelpDesk Ticket</field>
         <field name="res_model">helpdesk.ticket</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">kanban,tree,form</field>
     </record>
 </odoo>

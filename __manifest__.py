@@ -1,5 +1,5 @@
 {
-    'name': 'HelpDesk',
+    'name': 'Helpdesk',
     'version': '17.0.1.0.0',
     'summary': 'Help Desk Management System',
     'depends': ['base', 'mail', 'web', 'project'],

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <menuitem id="menu_helpdesk_root" name="HelpDesk" web_icon="custom_helpdesk,static/description/icon.png"/>
+    <menuitem id="menu_helpdesk_root" name="Helpdesk" web_icon="custom_helpdesk,static/description/icon.png"/>
     <menuitem id="menu_helpdesk_dashboard" name="Dashboard"
               parent="menu_helpdesk_root" action="action_helpdesk_dashboard"
               sequence="1"

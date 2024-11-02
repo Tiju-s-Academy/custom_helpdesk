@@ -2,7 +2,7 @@
     'name': 'HelpDesk',
     'version': '17.0.1.0.0',
     'summary': 'Help Desk Management System',
-    'depends': ['base', 'mail', 'web'],
+    'depends': ['base', 'mail', 'web', 'project'],
     'data': [
         'data/mail_activity_data.xml',
         'security/helpdesk_security.xml',

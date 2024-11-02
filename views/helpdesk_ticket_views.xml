@@ -17,8 +17,10 @@
         <field name="name">helpdesk.ticket.kanban</field>
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="state" class="o_kanban_small_column"
-                    sample="1" js_class="helpdesk_ticket_kanban">
+           <kanban default_group_by="state" class="o_kanban_small_column" records_draggable="false"
+                sample="1" js_class="helpdesk_ticket_kanban"
+                   default_order="state_order asc,state">
+               <field name="state_order"/>
                 <field name="state"/>
                 <field name="name"/>
                 <field name="customer_id"/>
@@ -26,7 +28,7 @@
                 <field name="expected_resolution_date"/>
                 <field name="priority" widget="priority"/>
                 <progressbar field="state"
-                             colors="{&quot;done&quot;: &quot;success&quot;, &quot;canceled&quot;: &quot;danger&quot;, &quot;in_progress&quot;: &quot;normal&quot; }"/>
+                             colors='{"in_progress": "warning", "canceled": "normal","submitted":"danger","done":"success"}'/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
@@ -48,7 +50,10 @@
                                     <field name="priority" widget="priority"/>
                                 </div>
                             </div>
+                            <div class="o_kanban_record_bottom mt-3">
+                            </div>
                         </div>
+
                     </t>
                 </templates>
             </kanban>

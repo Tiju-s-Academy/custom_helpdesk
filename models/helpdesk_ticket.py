@@ -9,8 +9,8 @@ class HelpDeskTicket(models.Model):
     name = fields.Char(string="Ticket Title", required=True)
     description = fields.Text(string="Description")
     state = fields.Selection(selection=[('new', 'New'), ('submitted', 'Submitted'), ('in_progress', 'In Progress'),
-                                        ('done', 'Done'),
-                                         ('canceled', 'Canceled')], tracking=True, String="Status", default='new',
+                                        ('done', 'Done'), ('canceled', 'Canceled')],
+                             tracking=True, String="Status", default='new',
                              index=True)
     priority = fields.Selection(selection=[
         ('0', 'Low'),
@@ -27,9 +27,25 @@ class HelpDeskTicket(models.Model):
     phone_number = fields.Text(string="Phone Number")
     file = fields.Binary(string="Attachment", store=True)
     website_student = fields.Char(string='Name')
+    state_order = fields.Integer(string="State Order", compute='_compute_state_order', store=True)
+
+    @api.depends('state')
+    def _compute_state_order(self):
+        for record in self:
+            if record.state == 'new':
+                record.state_order = 1
+            elif record.state == 'submitted':
+                record.state_order = 2
+            elif record.state == 'in_progress':
+                record.state_order = 3
+            elif record.state == 'done':
+                record.state_order = 4
+            elif record.state == 'canceled':
+                record.state_order = 5
 
     def action_submit(self):
         self.state = 'submitted'
+        self.write({'state': self.state})
         if self.category_id.team_id.member_ids:
             for user in self.category_id.team_id.member_ids:
                 self.activity_schedule(
@@ -41,10 +57,12 @@ class HelpDeskTicket(models.Model):
     def action_start_progress(self):
         for record in self:
             record.state = 'in_progress'
+            self.write({'state': self.state})
 
     def action_resolve(self):
         for record in self:
             record.state = 'done'
+            self.write({'state': self.state})
             activity_ids = self.activity_ids
             if activity_ids:
                 activity_ids.unlink()
@@ -59,3 +77,4 @@ class HelpDeskTicket(models.Model):
     def action_cancel_submission(self):
         for record in self:
             record.state = 'canceled'
+            self.write({'state': self.state})

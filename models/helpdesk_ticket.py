@@ -78,3 +78,6 @@ class HelpDeskTicket(models.Model):
         for record in self:
             record.state = 'canceled'
             self.write({'state': self.state})
+            activity_ids = self.activity_ids
+            if activity_ids:
+                activity_ids.unlink()

@@ -18,7 +18,7 @@
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
            <kanban default_group_by="state" class="o_kanban_small_column" records_draggable="false"
-                sample="1" js_class="helpdesk_ticket_kanban"
+                sample="1" js_class="helpdesk_ticket_kanban" create="false"
                    default_order="state_order asc,state">
                <field name="state_order"/>
                 <field name="state"/>
@@ -36,14 +36,14 @@
                             <div class="oe_kanban_content text-break">
                                 <div>
                                     <strong class="o_kanban_record_title">
-                                        <field name="name"/>
+                                        <field name="name" required="true"/>
                                     </strong>
                                 </div>
                                 <div>
                                     <field name="customer_id"/>
                                 </div>
                                 <div>
-                                    <field name="category_id"/>
+                                    <field name="category_id" required="true"/>
                                 </div>
                                 <field name="expected_resolution_date"/>
                                 <div>

@@ -3,7 +3,9 @@
         <field name="name">helpdesk.category.kanban</field>
         <field name="model">helpdesk.category</field>
         <field name="arch" type="xml">
+
             <kanban class="o_kanban_dashboard" create="0">
+
                 <field name="name"/>
                 <field name="ticket_count"/>
                 <field name="solved_ticket_count"/>

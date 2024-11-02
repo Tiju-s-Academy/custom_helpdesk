@@ -23,7 +23,7 @@ class HelpDeskTicket(models.Model):
     customer_id = fields.Many2one('res.partner', string="Customer", default=lambda self: self.env.user.partner_id,
                                   required=True,readonly=True)
     create_date = fields.Date(string="Submission Date", readonly=True, default=fields.Date.today)
-    expected_resolution_date = fields.Datetime(string="solve within")
+    expected_resolution_date = fields.Date(string="solve within")
     phone_number = fields.Text(string="Phone Number")
     file = fields.Binary(string="Attachment", store=True)
     website_student = fields.Char(string='Name')

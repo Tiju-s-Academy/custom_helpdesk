@@ -83,13 +83,13 @@
                         <field name="name" readonly="state not in 'new'"/>
                         <field name="customer_id" readonly="state not in 'new'"/>
                         <field name="priority" widget="priority" readonly="state not in 'new'"/>
-                        <field name="category_id" options="{'no_create': True}"
+                        <field name="category_id" options="{'no_create': True}" required="true"
                                readonly="state not in 'new'"/> <!-- Allow all categories -->
                         <field name="create_date" readonly="1"/>
                         <field name="file" readonly="state not in 'new'"/>
                         <field name="expected_resolution_date"
                                groups="custom_helpdesk.group_helpdesk_admin,custom_helpdesk.group_helpdesk_team_member"
-                               readonly="state not in 'new'"/>
+                               required="true"/>
                         <field name="expected_resolution_date"
                                groups="custom_helpdesk.group_helpdesk_user"
                                readonly="1"/>

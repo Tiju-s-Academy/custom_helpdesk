@@ -18,7 +18,7 @@
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
            <kanban default_group_by="state" class="o_kanban_small_column" records_draggable="false"
-                sample="1" js_class="helpdesk_ticket_kanban" create="false"
+                sample="1" js_class="helpdesk_ticket_kanban"
                    default_order="state_order asc,state">
                <field name="state_order"/>
                 <field name="state"/>

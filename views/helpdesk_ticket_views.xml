@@ -20,6 +20,7 @@
            <kanban default_group_by="state" class="o_kanban_small_column" records_draggable="false"
                 sample="1" js_class="helpdesk_ticket_kanban"
                    default_order="state_order asc,state">
+               <field name="is_web_form" invisible="1"/>
                <field name="state_order"/>
                 <field name="state"/>
                 <field name="name"/>
@@ -40,7 +41,8 @@
                                     </strong>
                                 </div>
                                 <div>
-                                    <field name="customer_id"/>
+                                    <field name="customer_id" invisible="is_web_form"/>
+                                    <field name="website_student" readonly="state not in 'new'" invisible="not is_web_form"/>
                                 </div>
                                 <div>
                                     <field name="category_id" required="true"/>
@@ -65,6 +67,7 @@
         <field name="model">helpdesk.ticket</field>
         <field name="arch" type="xml">
             <form string="Ticket">
+                 <field name="is_web_form" invisible="1"/>
                 <header>
                     <field name="state" widget="statusbar"/>
                     <button string="Submit" name="action_submit" type="object" class="oe_highlight"
@@ -81,7 +84,8 @@
                 <sheet>
                     <group>
                         <field name="name" readonly="state not in 'new'"/>
-                        <field name="customer_id" readonly="state not in 'new'"/>
+                        <field name="customer_id" readonly="state not in 'new'" invisible="is_web_form"/>
+                        <field name="website_student" readonly="state not in 'new'" invisible="not is_web_form"/>
                         <field name="priority" widget="priority" readonly="state not in 'new'"/>
                         <field name="category_id" options="{'no_create': True}" required="true"
                                readonly="state not in 'new'"/> <!-- Allow all categories -->

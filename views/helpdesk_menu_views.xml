@@ -7,8 +7,10 @@
               groups="custom_helpdesk.group_helpdesk_admin"/>
     <menuitem id="menu_helpdesk_ticket" name="Tickets" parent="menu_helpdesk_root" action="action_helpdesk_ticket"
               sequence="2"/>
-    <menuitem id="menu_helpdesk_team" name="Teams" parent="menu_helpdesk_root" action="action_helpdesk_team"
-              sequence="3"/>
     <menuitem id="menu_helpdesk_category" name="Category" parent="menu_helpdesk_root" action="action_helpdesk_category"
-              sequence="4"/>
+              sequence="3"
+              groups="custom_helpdesk.group_helpdesk_admin"/>
+    <menuitem id="menu_helpdesk_team" name="Teams" parent="menu_helpdesk_root" action="action_helpdesk_team"
+              sequence="4"
+              groups="custom_helpdesk.group_helpdesk_admin,custom_helpdesk.group_helpdesk_team_member"/>
 </odoo>

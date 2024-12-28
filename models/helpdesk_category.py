@@ -20,14 +20,15 @@ class HelpDeskCategory(models.Model):
     total_solved_ticket_count = fields.Integer(string="Total Solved Tickets Across All Categories",
                                                compute='_compute_total_ticket_counts', store=False)
 
-    @api.depends('ticket_ids.state')
+    @api.depends('ticket_ids','ticket_ids.state')
     def _compute_ticket_counts(self):
         for category in self:
+            print("its working-----")
             tickets = category.ticket_ids
             category.ticket_count = len(tickets)
             category.solved_ticket_count = len(tickets.filtered(lambda t: t.state == 'done'))
 
-    @api.depends('ticket_ids.state')
+    @api.depends('ticket_ids','ticket_ids.state')
     def _compute_total_ticket_counts(self):
         total_tickets = self.env['helpdesk.ticket'].search([])
         total_solved_tickets = total_tickets.filtered(lambda t: t.state == 'done')

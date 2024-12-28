@@ -3,6 +3,26 @@
     <template id="helpdesk_thanks_web_form_template">
         <title>HelpDesk - Thank You</title>
         <t t-call="website.layout">
+            <t t-javascript="true">
+                <script type="text/javascript">
+                    window.onload = function () {
+                    console.log("working");
+                    // Hide header and footer by their IDs
+                    const topElement = document.getElementById('top');
+                    const footerElement = document.getElementById('footer');
+                    const elements = document.querySelectorAll('.o_footer_copyright.o_colored_level.o_cc');
+                    elements.forEach(element => {
+                    element.style.display = "none";
+                    });
+                    if (topElement) {
+                    topElement.style.display = "none";
+                    }
+                    if (footerElement) {
+                    footerElement.style.display = "none";
+                    }
+                    };
+                </script>
+            </t>
             <div id="wrap">
                 <br></br>
                 <div class="container head" align="center">
@@ -12,7 +32,7 @@
                 </div>
                 <br/>
                 <div class="container link-head" align="center">
-                    <a t-attf-href="create_helpdesk_request">Thanks for your submission </a>
+                    <a t-attf-href="create_helpdesk_request">Thanks for your submission</a>
                 </div>
                 <br/>
             </div>
@@ -21,6 +41,28 @@
     <template id="web_form_template">
         <title>HelpDesk</title>
         <t t-call="website.layout">
+            <t t-javascript="true">
+                <script type="text/javascript">
+                    window.onload = function () {
+                    console.log("working");
+                    // Hide header and footer by their IDs
+                    const topElement = document.getElementById('top');
+                    const footerElement = document.getElementById('footer');
+                    const elements = document.querySelectorAll('.o_footer_copyright.o_colored_level.o_cc');
+                    elements.forEach(element => {
+                    element.style.display = "none";
+                    });
+                    console.log(footerElement);
+                    console.log(topElement);
+                    if (topElement) {
+                    topElement.style.display = "none";
+                    }
+                    if (footerElement) {
+                    footerElement.style.display = "none";
+                    }
+                    };
+                </script>
+            </t>
             <div id="wrap">
                 <br></br>
                 <div class="container head" align="center">

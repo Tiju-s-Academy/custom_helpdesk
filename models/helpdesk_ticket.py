@@ -20,14 +20,14 @@ class HelpDeskTicket(models.Model):
     string="Priority",
     default='1')
     category_id = fields.Many2one('helpdesk.category', string="Category")
-    customer_id = fields.Many2one('res.partner', string="Customer", default=lambda self: self.env.user.partner_id,
-                                  required=True,readonly=True)
+    customer_id = fields.Many2one('res.partner', string="Customer", default=lambda self: self.env.user.partner_id,readonly=True)
     create_date = fields.Date(string="Submission Date", readonly=True, default=fields.Date.today)
     expected_resolution_date = fields.Date(string="solve within")
     phone_number = fields.Text(string="Phone Number")
-    file = fields.Binary(string="Attachment", store=True)
-    website_student = fields.Char(string='Name')
+    file = fields.Binary(string="Attachment",attachment=True, store=True)
+    website_student = fields.Char(string='Student')
     state_order = fields.Integer(string="State Order", compute='_compute_state_order', store=True)
+    is_web_form = fields.Boolean(string="Created from Web Form", default=False)
 
     @api.depends('state')
     def _compute_state_order(self):

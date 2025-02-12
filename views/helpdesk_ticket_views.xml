@@ -19,7 +19,7 @@
         <field name="arch" type="xml">
            <kanban default_group_by="state" class="o_kanban_small_column" records_draggable="false"
                 sample="1" js_class="helpdesk_ticket_kanban"
-                   default_order="state_order asc,state">
+                   default_order="state_order asc, create_date desc">
                <field name="is_web_form" invisible="1"/>
                <field name="state_order"/>
                 <field name="state"/>

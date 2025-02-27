@@ -53,6 +53,10 @@ class HelpDeskTicket(models.Model):
                     user_id=user.id,
                     note=f'Please Check Ticket: {self.name}'
                 )
+                return {
+                    'type': 'ir.actions.client',
+                    'tag': 'reload',
+                }
 
     def action_start_progress(self):
         for record in self:
@@ -65,7 +69,7 @@ class HelpDeskTicket(models.Model):
             self.write({'state': self.state})
             activity_ids = self.activity_ids
             if activity_ids:
-                activity_ids.unlink()
+                activity_ids.action_done()
             return {
                 'effect': {
                     'fadeout': 'slow',
